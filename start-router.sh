@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #Petit script pour démarrer facilement la fonction routage entre la carte réseau RJ45 et la viruelle USB sur le nano KVM
 # Utilisation: bash start-router.sh
-#zf260211.1549
+#zf260211.1735
 
 
 
@@ -19,9 +19,12 @@ iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
 
 
 
+# Récupère l'adresse ip de la carte usb0
+USB_IP=$(ip -4 addr show usb0 | awk '/inet / {split($2,a,"/"); print a[1]}')
+
 # Modification de la config du dhcp server
 cat /etc/udhcpd.usb0.conf > /tmp/udhcpd.tmp
-echo "opt router 10.17.32.1" >> /tmp/udhcpd.tmp
+echo "opt router $USB_IP" >> /tmp/udhcpd.tmp
 echo "opt dns 8.8.8.8" >> /tmp/udhcpd.tmp
 
 # Redémarrage du dhcp server
