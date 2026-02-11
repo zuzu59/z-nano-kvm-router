@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #Petit script pour démarrer facilement la fonction routage entre la carte réseau RJ45 et la viruelle USB sur le nano KVM
 # Utilisation: bash start-router.sh
-#zf260211.1509
+#zf260211.1549
 
 
 
@@ -30,7 +30,9 @@ udhcpd -S /tmp/udhcpd.tmp &
 
 echo -e "
 
-Routage opérationnel vous pouvez refaire la connexion usb0 sur la machine remote afin d'hériter le default gateway ainsi que le DNS
+Routage opérationnel.
+Vous devez refaire la connexion usb0 sur la machine remote afin de mette à jour 
+l'adresse du default gateway et du DNS
 
 "
 
